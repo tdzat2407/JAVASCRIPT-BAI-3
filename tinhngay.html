@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tính số ngày trong tháng</title>
+</head>
+<body>
+    <h2>Tính số ngày trong tháng</h2>
+
+    <label>Nhập tháng:</label>
+    <input type="number" id="thang" placeholder="Ví dụ: 2">
+
+    <br><br>
+
+    <label>Nhập năm:</label>
+    <input type="number" id="nam" placeholder="Ví dụ: 2024">
+
+    <br><br>
+
+    <button onclick="tinhNgay()">Tính số ngày</button>
+
+    <p id="ketqua"></p>
+
+    <script>
+        function tinhNgay() {
+            let thang = Number(document.getElementById("thang").value);
+            let nam = Number(document.getElementById("nam").value);
+
+            let soNgay;
+
+            if (nam <= 0 || !Number.isInteger(nam) ||
+                !Number.isInteger(thang) || thang < 1 || thang > 12) {
+                document.getElementById("ketqua").innerHTML =
+                    "Vui lòng nhập tháng và năm hợp lệ!";
+                return;
+            }
+
+            switch (thang) {
+                case 1:
+                case 3:
+                case 5:
+                case 7:
+                case 8:
+                case 10:
+                case 12:
+                    soNgay = 31;
+                    break;
+
+                case 4:
+                case 6:
+                case 9:
+                case 11:
+                    soNgay = 30;
+                    break;
+
+                case 2:
+                    if (nam % 400 == 0 ||
+                       (nam % 4 == 0 && nam % 100 != 0)) {
+                        soNgay = 29;
+                    } else {
+                        soNgay = 28;
+                    }
+                    break;
+            }
+
+            document.getElementById("ketqua").innerHTML =
+                "Tháng " + thang + " năm " + nam +
+                " có " + soNgay + " ngày.";
+        }
+    </script>
+</body>
+</html>
